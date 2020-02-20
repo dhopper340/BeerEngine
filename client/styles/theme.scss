@@ -1,0 +1,142 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+
+// always include only once per project
+@include mat-core();
+
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+
+/* ======== Angular material custom themes ======== */
+
+// additional css classes
+// you can hardcode one of them on the <body> tag
+// or switch dynamically during runtime with [class]
+.custom-light-theme {
+  $custom-light-primary: (
+    50: #f9f8ef,
+    100: #efedd6,
+    200: #e4e2bb,
+    300: #d9d69f,
+    400: #d1cd8b,
+    500: #c9c476,
+    600: #c3be6e,
+    700: #bcb663,
+    800: #b5af59,
+    900: #a9a246,
+    A100: #ffffff,
+    A200: #fffbce,
+    A400: #fff79b,
+    A700: #fff581,
+    contrast: (
+      50: $dark-primary-text,
+      100: $dark-primary-text,
+      200: $dark-primary-text,
+      300: $dark-primary-text,
+      400: $dark-primary-text,
+      500: $light-primary-text,
+      600: $light-primary-text,
+      700: $light-primary-text,
+      800: $light-primary-text,
+      900: $light-primary-text,
+      A100: $dark-primary-text,
+      A200: $dark-primary-text,
+      A400: $dark-primary-text,
+      A700: $dark-primary-text
+    )
+  );
+
+  $custom-light-accent: (
+    50: #f9ece4,
+    100: #efcebc,
+    200: #e5ae8f,
+    300: #da8e62,
+    400: #d27540,
+    500: #ca5d1e,
+    600: #c5551a,
+    700: #bd4b16,
+    800: #b74112,
+    900: #ab300a,
+    A100: #ffdfd7,
+    A200: #ffb5a4,
+    A400: #ff8c71,
+    A700: #ff7858,
+    contrast: (
+      50: $dark-primary-text,
+      100: $dark-primary-text,
+      200: $dark-primary-text,
+      300: $dark-primary-text,
+      400: $dark-primary-text,
+      500: $light-primary-text,
+      600: $light-primary-text,
+      700: $light-primary-text,
+      800: $light-primary-text,
+      900: $light-primary-text,
+      A100: $dark-primary-text,
+      A200: $dark-primary-text,
+      A400: $dark-primary-text,
+      A700: $dark-primary-text
+    )
+  );
+
+  $custom-light-primary: mat-palette($custom-light-primary);
+  $custom-light-accent: mat-palette($custom-light-accent, 100, 500, A100);
+  $custom-light-warn: mat-palette($mat-red);
+
+  $custom-light-theme: mat-light-theme(
+    $custom-light-primary,
+    $custom-light-accent,
+    $custom-light-warn
+  );
+
+  @include angular-material-theme($custom-light-theme);
+}
+
+.custom-dark-theme {
+  color: $light-primary-text;
+
+  $dark-accent: (
+    50: #e9edef,
+    100: #c8d3d7,
+    200: #a4b6bc,
+    300: #7f98a1,
+    400: #63828d,
+    500: #486c79,
+    600: #416471,
+    700: #385966,
+    800: #304f5c,
+    900: #213d49,
+    A100: #8edaff,
+    A200: #5bcaff,
+    A400: #28b9ff,
+    A700: #0eb1ff,
+    contrast: (
+      50: $dark-primary-text,
+      100: $dark-primary-text,
+      200: $dark-primary-text,
+      300: $dark-primary-text,
+      400: $light-primary-text,
+      500: $light-primary-text,
+      600: $light-primary-text,
+      700: $light-primary-text,
+      800: $light-primary-text,
+      900: $light-primary-text,
+      A100: $dark-primary-text,
+      A200: $dark-primary-text,
+      A400: $dark-primary-text,
+      A700: $dark-primary-text
+    )
+  );
+
+  $custom-dark-primary: mat-palette($mat-brown);
+  $custom-dark-accent: mat-palette($dark-accent, 100, 500, A100);
+  $custom-dark-warn: mat-palette($mat-red);
+
+  $custom-dark-theme: mat-dark-theme(
+    $custom-dark-primary,
+    $custom-dark-accent,
+    $custom-dark-warn
+  );
+
+  @include angular-material-theme($custom-dark-theme);
+}

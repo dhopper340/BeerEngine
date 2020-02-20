@@ -1,0 +1,22 @@
+<form>
+  <div>
+    <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Employee Name</mat-label>
+    <input matInput placeholder="" value="">
+  </mat-form-field>
+  <!-- <div class="mdc-text-field name">
+       <input type="text" class="mdc-text-field__input" id="username-input" name="username">
+       <label class="mdc-floating-label" for="username-input">Employee Name</label>
+       <div class="mdc-line-ripple"></div>
+     </div> -->
+</form>
+<div *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<div *ngIf="employees && employees.length > 0">
+  <div fxLayout="row" *ngFor="let employee of employees">
+    {{employee.name}}
+  </div>
+</div>

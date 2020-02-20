@@ -1,0 +1,43 @@
+<!-- <div style="text-align: center;">
+  <h1>
+    Routing and Navigation
+  </h1>
+</div>
+<div class="container">
+  <button mat-stroked-button [matMenuTriggerFor]="menu">Links</button>
+  <mat-menu #menu="matMenu">
+    <a routerLink="/departments" routerLinkActive="active" mat-menu-item>Departments</a>
+    <a routerLink="/employees" routerLinkActive="active" mat-menu-item>Employees</a>
+  </mat-menu>
+  <router-outlet></router-outlet>
+</div> -->
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="expanded-toolbar">
+    <div fxLayout="row">
+      <button mat-button routerLink="/">{{title}}</button>
+    </div>
+    <mat-slide-toggle fxFlex [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">{{selectedTheme}}
+      theme</mat-slide-toggle>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+      <button mat-button routerLink="/">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-button routerLink="/departments">Departments</button>
+      <button mat-button routerLink="/employees">Employees</button>
+      <button mat-button *ngIf="!isAuthenticated" (click)="login()">Login</button>
+      <button mat-button *ngIf="isAuthenticated" (click)="logout()">Logout</button>
+    </div>
+    <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/">
+    <mat-icon>home</mat-icon>
+  </button>
+  <button mat-menu-item routerLink="/departments">Departments</button>
+  <button mat-menu-item routerLink="/employees">Employees</button>
+  <button mat-menu-item *ngIf="!isAuthenticated" (click)="login()">Login</button>
+  <button mat-menu-item *ngIf="isAuthenticated" (click)="logout()">Logout</button>
+</mat-menu>
