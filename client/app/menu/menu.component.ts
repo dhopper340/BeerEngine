@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  title = 'Sample Angular App';
+  title = 'Angular App';
   selectedTheme = '';
 
   public isAuthenticated: boolean;
