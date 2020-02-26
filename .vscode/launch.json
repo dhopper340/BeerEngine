@@ -6,14 +6,14 @@
   "compounds": [
     {
       "name": "Launch & Debug",
-      "configurations": ["Node: Debug", "Chrome: Debug"]
+      "configurations": ["Start", "Node: Debug"]
     }
   ],
   "configurations": [
     {
-      "name": "Chrome: Debug",
       "type": "chrome",
       "request": "launch",
+      "name": "Start",
       "preLaunchTask": "npm: start",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceRoot}",
@@ -27,7 +27,7 @@
       "request": "launch",
       "name": "Node: Debug",
       "runtimeExecutable": "nodemon",
-      "program": "${workspaceFolder}/dist/server/app.js",
+      "program": "${workspaceFolder}/dist/server/server.js",
       "restart": true,
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",

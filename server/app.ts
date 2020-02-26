@@ -1,38 +1,40 @@
-import express from 'express';
+import express, { Router, Application } from 'express';
+import { BreweryRoutes } from './routes/brewery.routes';
+// import { mongoose } from 'mongoose';
+// import dbConfig from './database/db';
 // import cors from 'cors';
 
-const app = express();
+class App {
+  public app: Application;
+  public router: Router;
+  public breweryRoutes: BreweryRoutes = new BreweryRoutes();
 
-// const corsOptions = {
-//   origin: 'http://localhost:4200',
-//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
+  constructor() {
+    this.app = express();
+    this.router = express.Router();
+    this.breweryRoutes.routes(this.router);
+    this.config();
+  }
 
-// app.use(cors(corsOptions));
+  private config(): void {
+    this.router.use(express.json());
+    this.app.use('/api', this.router);
+  }
 
-const router = express.Router();
+  // const corsOptions = {
+  //   origin: 'http://localhost:4200',
+  //   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  // };
 
-router.use(express.json());
+  // app.use(cors(corsOptions));
 
-router.get('/employee', (request, response) => {
-  response.send([{ id: 1, name: 'John Smith' }, { id: 2, name: 'Stacy Jacksons' }]);
-});
+  // const router = express.Router();
 
-router.get('/employee/:id', (request, response) => {
-  const requestedId = request.params.id;
-  response.send({ id: requestedId, name: 'John Smith' });
-});
+  // app.use('/api', router);
 
-router.post('/employee', (request, response) => {
-  response.status(201).send(request.body);
-});
+  // app.listen(8000, () => {
+  //   console.log('Server started!');
+  // });
+}
 
-router.delete('/employee/:id', (request, response) => {
-  response.sendStatus(204);
-});
-
-app.use('/api', router);
-
-app.listen(8000, () => {
-  console.log('Server started!');
-});
+export default new App().app;

@@ -9,8 +9,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AngularMaterialModule } from './app-material.module';
-import { EmployeeListService } from './employee-list/services/employee-list.service';
-import { EmployeeListResolver } from './employee-list/employee-list.resolver';
+import { BreweryService } from './brewery-list/services/brewery.service';
+import { BreweryListResolver } from './brewery-list/brewery-list.resolver';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { EmployeeListResolver } from './employee-list/employee-list.resolver';
     HttpClientModule,
     CoreModule
   ],
-  providers: [EmployeeListService, EmployeeListResolver],
+  providers: [BreweryService, BreweryListResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
