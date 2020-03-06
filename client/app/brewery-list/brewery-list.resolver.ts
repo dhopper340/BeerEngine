@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { BreweryService, BreweryResolved } from './services/brewery.service';
+import { BreweryService } from './services/brewery.service';
+import { BreweryResolved } from '../models/brewery-resolved';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()

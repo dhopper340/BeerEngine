@@ -1,25 +1,40 @@
-export class Brewery {
+import mongoose from 'mongoose';
 
-  id: number;
-  name: string;
-  address: string;
-  city: string;
-  state: string;
-  zipcode: string;
+const Schema = mongoose.Schema;
 
-  constructor(name: string, address: string, city: string, state: string, zipcode: string) {
-    this.name = name;
-    this.address = address;
-    this.city = city;
-    this.state = state;
-    this.zipcode = zipcode;
-  }
+const brewerySchema = new Schema({
+  name: { type: String, required: true },
+  address: { type: String, required: true },
+  address2: { type: String },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  zipcode: { type: String, required: true }
+});
 
-  getName() {
-    return this.name;
-  }
+export const Brewery = mongoose.model('Brewery', brewerySchema);
 
-  getAddress() {
-    return this.address + ', ' + this.city + ', ' + this.state + ' ' + this.zipcode;
-  }
-}
+// export class Brewery {
+
+//   id: number;
+//   name: string;
+//   address: string;
+//   city: string;
+//   state: string;
+//   zipcode: string;
+
+//   constructor(name: string, address: string, city: string, state: string, zipcode: string) {
+//     this.name = name;
+//     this.address = address;
+//     this.city = city;
+//     this.state = state;
+//     this.zipcode = zipcode;
+//   }
+
+//   getName() {
+//     return this.name;
+//   }
+
+//   getAddress() {
+//     return this.address + ', ' + this.city + ', ' + this.state + ' ' + this.zipcode;
+//   }
+// }

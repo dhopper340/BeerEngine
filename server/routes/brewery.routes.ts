@@ -9,8 +9,6 @@ export class BreweryRoutes {
   public routes(router: Router): void {
     router.post('/brewery', this.breweryController.add);
 
-    router.get('/', this.breweryController.index);
-
     router.get('/brewery', this.breweryController.get);
 
     router

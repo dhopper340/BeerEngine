@@ -16,8 +16,10 @@
     <div fxLayout="row">
       <button mat-button routerLink="/">{{title}}</button>
     </div>
-    <mat-slide-toggle fxFlex [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">{{selectedTheme}}
-      theme</mat-slide-toggle>
+    <mat-slide-toggle fxFlex [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">
+      {{selectedTheme}}
+      Beer
+    </mat-slide-toggle>
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
       <button mat-button routerLink="/">
         <mat-icon>home</mat-icon>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ThemeService } from './core/services/theme.service';
 import { Observable } from 'rxjs';
 
@@ -11,9 +11,15 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   isDarkTheme: Observable<boolean>;
 
-  constructor(private themeService: ThemeService) { }
+  constructor(// private changeDetectorRef: ChangeDetectorRef,
+    private themeService: ThemeService) { }
 
   ngOnInit() {
-    this.isDarkTheme = this.themeService.isDarkTheme;
+    // setTimeout(() => { this.isDarkTheme = this.themeService.isDarkTheme; });
+    // this.isDarkTheme = this.themeService.isDarkTheme;
+    // this.changeDetectorRef.detectChanges();
+    Promise.resolve(null).then(() => {
+      this.isDarkTheme = this.themeService.isDarkTheme;
+    });
   }
 }

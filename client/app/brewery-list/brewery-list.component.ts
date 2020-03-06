@@ -1,4 +1,6 @@
-import { BreweryService, Brewery, BreweryResolved } from './services/brewery.service';
+import { BreweryService } from './services/brewery.service';
+import { Brewery } from '../models/brewery';
+import { BreweryResolved } from '../models/brewery-resolved';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // import { MDCTextField } from '@material/textfield';

@@ -1,24 +1,31 @@
-import express, { Router, Application } from 'express';
+import dotenv from 'dotenv';
+import express, { Router, Application, Request, Response } from 'express';
 import { BreweryRoutes } from './routes/brewery.routes';
-// import { mongoose } from 'mongoose';
+import { loggerMiddleware } from './middleware/logger';
+import { DataBase } from './database/db';
 // import dbConfig from './database/db';
 // import cors from 'cors';
 
-class App {
+export class App {
   public app: Application;
   public router: Router;
   public breweryRoutes: BreweryRoutes = new BreweryRoutes();
+  public database: DataBase = new DataBase();
 
   constructor() {
+    dotenv.config();
     this.app = express();
     this.router = express.Router();
+    this.router.get('/', (request: Request, response: Response) => {
+      response.status(200).send({
+        message: 'GET request successfull.'
+      });
+    });
     this.breweryRoutes.routes(this.router);
-    this.config();
-  }
-
-  private config(): void {
     this.router.use(express.json());
+    this.app.use(loggerMiddleware);
     this.app.use('/api', this.router);
+    this.database.connect();
   }
 
   // const corsOptions = {
@@ -27,14 +34,4 @@ class App {
   // };
 
   // app.use(cors(corsOptions));
-
-  // const router = express.Router();
-
-  // app.use('/api', router);
-
-  // app.listen(8000, () => {
-  //   console.log('Server started!');
-  // });
 }
-
-export default new App().app;

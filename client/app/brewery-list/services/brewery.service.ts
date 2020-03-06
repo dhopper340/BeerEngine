@@ -1,16 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-
-export interface Brewery {
-  id: number;
-  name: string;
-}
-
-export interface BreweryResolved {
-  breweries: Brewery[];
-  error?: any;
-}
+import { Brewery } from '../../models/brewery';
 
 @Injectable({
   providedIn: 'root'
