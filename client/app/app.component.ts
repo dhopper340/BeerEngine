@@ -11,10 +11,12 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   isDarkTheme: Observable<boolean>;
 
-  constructor(// private changeDetectorRef: ChangeDetectorRef,
+  constructor(
+    // private changeDetectorRef: ChangeDetectorRef,
     private themeService: ThemeService) { }
 
   ngOnInit() {
+    // TODO: What is the best method to use to avoid the Modified after set error
     // setTimeout(() => { this.isDarkTheme = this.themeService.isDarkTheme; });
     // this.isDarkTheme = this.themeService.isDarkTheme;
     // this.changeDetectorRef.detectChanges();

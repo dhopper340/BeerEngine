@@ -3,7 +3,6 @@ import express, { Router, Application, Request, Response } from 'express';
 import { BreweryRoutes } from './routes/brewery.routes';
 import { loggerMiddleware } from './middleware/logger';
 import { DataBase } from './database/db';
-// import dbConfig from './database/db';
 // import cors from 'cors';
 
 export class App {

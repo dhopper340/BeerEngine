@@ -13,7 +13,9 @@ export class BreweryListResolver implements Resolve<BreweryResolved> {
   resolve(): Observable<BreweryResolved>  {
     return this.service.getAllBreweries()
     .pipe(
-      map(data => ({ breweries: data, error: null })),
+      map(data => {
+        return ({ breweries: data, error: null });
+      }),
       catchError((error: HttpErrorResponse) => {
         const message = `Retrieval error: ${error.message}`;
         console.error(message);

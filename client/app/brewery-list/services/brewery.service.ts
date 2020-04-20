@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Brewery } from '../../models/brewery';
+import { IBrewery } from '../../models/brewery';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +10,21 @@ import { Brewery } from '../../models/brewery';
 export class BreweryService {
   constructor(private http: HttpClient) { }
 
-  getAllBreweries(): Observable<Brewery[]> {
+  getAllBreweries(): Observable<IBrewery[]> {
     // return throwError('Error loading data!');
-    return this.http.get<Brewery[]>('/api/brewery');
+    return this.http.get<IBrewery[]>('/api/brewery');
   }
 
-  getBrewery(id: number): Observable<Brewery> {
-    return this.http.get<Brewery>('/api/brewery/' + id);
+  getBrewery(id: number): Observable<IBrewery> {
+    return this.http.get<IBrewery>('/api/brewery/' + id);
   }
 
-  addBrewery(brewery: Brewery): Observable<Brewery> {
-    return this.http.post<Brewery>('/api/brewery/', brewery);
+  addBrewery(brewery: IBrewery): Observable<IBrewery> {
+    return this.http.post<IBrewery>('/api/brewery/', brewery);
   }
 
-  updateBrewery(brewery: Brewery): Observable<void> {
-    return this.http.put<void>('/api/brewery/' + brewery.id, brewery);
+  updateBrewery(brewery: IBrewery): Observable<void> {
+    return this.http.put<void>('/api/brewery/' + brewery._id, brewery);
   }
 
   deleteBrewery(id: number) {

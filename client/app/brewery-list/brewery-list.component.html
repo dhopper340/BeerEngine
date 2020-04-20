@@ -6,17 +6,25 @@
     <mat-label>Brewery Name</mat-label>
     <input matInput placeholder="" value="">
   </mat-form-field>
-  <!-- <div class="mdc-text-field name">
-       <input type="text" class="mdc-text-field__input" id="username-input" name="username">
-       <label class="mdc-floating-label" for="username-input">Brewery Name</label>
-       <div class="mdc-line-ripple"></div>
-     </div> -->
 </form>
 <div *ngIf="errorMessage">
   {{errorMessage}}
 </div>
-<div *ngIf="breweries && breweries.length > 0">
-  <div fxLayout="row" *ngFor="let brewery of breweries">
-    {{brewery.name}}
+<div fxLayout="column" *ngIf="breweries && breweries.length > 0">
+  <div *ngFor="let brewery of breweries">
+    <div fxLayout="row" *ngIf="brewery.beer && brewery.beer.length > 0">
+      <div fxFlex="15">{{brewery.name}}:</div>
+      <!-- <div *ngFor="let beer of brewery.beer">{{beer.name}}</div> -->
+      <div>
+        <mat-form-field>
+          <mat-label>Select Beer</mat-label>
+          <mat-select disableOptionCentering panelClass="myPanelClass">
+            <mat-option *ngFor="let beer of brewery.beer" [value]="beer._id">
+              {{beer.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
 </div>

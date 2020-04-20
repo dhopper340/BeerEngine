@@ -1,49 +1,33 @@
 import mongoose from 'mongoose';
-import { Brewery } from '../models/brewery';
+import { Seeder } from './seeder';
+import { BreweryModel } from '../models/brewery';
+import { BeerModel } from './../models/beer';
 
 export class DataBase {
-  eraseDatabaseOnSync = true;
-
-  // connectionString: 'mongodb://localhost:27017/mydb?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false';
-  private seedData() {
-    new Brewery({
-      name: 'Goose Island Brewhouse',
-      address: '1800 N Clybourn Ave',
-      address2: '',
-      city: 'Chicago',
-      state: 'IL',
-      zipcode: '60614'
-    }).save();
-
-    new Brewery({
-      name: 'Lakefront Brewery',
-      address: '1872 N Commerce St',
-      address2: '',
-      city: 'Milwaukee',
-      state: 'WI',
-      zipcode: '53212'
-    }).save();
-
-    new Brewery({
-      name: 'Toppling Goliath Brewing Co',
-      address: '1600 Prosperity Rd',
-      address2: '',
-      city: 'Decorah',
-      state: 'IA',
-      zipcode: '52101'
-    }).save();
-  }
+  private eraseDatabaseOnSync = true;
+  private seeder: Seeder = new Seeder();
 
   public connect(): void {
+    let mongodbURI: string;
+
+    if (process.env.NODE_ENV === 'LOCAL') {
+      mongodbURI = process.env.CONNECTIONSTRING_LOCAL;
+    } else {
+      mongodbURI = process.env.CONNECTIONSTRING;
+    }
+
+    mongoose.Promise = global.Promise;
+
     // Set up default mongoose connection
-    mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    mongoose.connect(mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
       if (this.eraseDatabaseOnSync) {
         Promise.all([
-          Brewery.deleteMany({}),
+          BreweryModel.deleteMany({}),
+          BeerModel.deleteMany({}),
         ]);
       }
 
-      this.seedData();
+      this.seeder.seedData();
     });
 
     // Get the default connection
@@ -52,7 +36,9 @@ export class DataBase {
     // Bind connection to error event (to get notification of connection errors)
     db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+    db.on('connected', () => console.log('Connected to database.'));
+
     // Bind connection to open event
-    db.once('open', () => console.log('Connected to database'));
+    db.once('open', () => console.log('Database open.'));
   }
 }

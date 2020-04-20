@@ -1,6 +1,6 @@
-import { Brewery } from './brewery';
+import { IBrewery } from './brewery';
 
 export interface BreweryResolved {
-  breweries: Brewery[];
+  breweries: IBrewery[];
   error?: any;
 }

@@ -1,5 +1,5 @@
 import { BreweryService } from './services/brewery.service';
-import { Brewery } from '../models/brewery';
+import { IBrewery } from '../models/brewery';
 import { BreweryResolved } from '../models/brewery-resolved';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./brewery-list.component.scss']
 })
 export class BreweryListComponent implements OnInit {
-  breweries: Brewery[];
+  breweries: IBrewery[];
   errorMessage: string;
 
   constructor(public readonly service: BreweryService, private route: ActivatedRoute) { }
