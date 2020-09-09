@@ -27,7 +27,7 @@ export class BreweryService {
     return this.http.put<void>('/api/brewery/' + brewery._id, brewery);
   }
 
-  deleteBrewery(id: number) {
-    return this.http.delete('/api/brewery/' + id);
+  deleteBrewery(id: number): Observable<void> {
+    return this.http.delete<void>('/api/brewery/' + id);
   }
 }
