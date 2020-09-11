@@ -17,7 +17,7 @@ export class App {
     this.router = express.Router();
     this.router.get('/', (request: Request, response: Response) => {
       response.status(200).send({
-        message: 'GET request successfull.'
+        message: 'GET request successful.'
       });
     });
     this.breweryRoutes.routes(this.router);
